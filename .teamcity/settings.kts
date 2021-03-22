@@ -56,7 +56,6 @@ object Build : BuildType({
     steps {
         gradle {
             tasks = "buildDependents"
-            incremental = true
         }
     }
 
