@@ -55,8 +55,8 @@ object Build : BuildType({
 
     steps {
         gradle {
-            tasks = "buildDependents"
-            incremental = true
+            tasks = "build"
+            gradleWrapperPath = "gradlew"
         }
     }
 
