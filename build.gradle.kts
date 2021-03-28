@@ -2,9 +2,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
+    id("maven-publish")
 }
 
 description = "Kotest matchers for Result4K, the friendly Kotlin Result type"
+
+group = "mr.bergin"
+version = "LOCAL"
 
 dependencies {
     api(kotlin("stdlib-jdk8"))
@@ -26,5 +30,23 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+            configurePom {
+                name(artifactId)
+                description(description ?: "")
+                developers {
+                    developer {
+                        name("Jordan Bergin")
+                        email("jordan.j.bergin@protonmail.com")
+                    }
+                }
+            }
+        }
     }
 }
