@@ -49,6 +49,8 @@ project {
 object Build : BuildType({
     name = "Build"
 
+    allowExternalStatus = true
+
     vcs {
         root(DslContext.settingsRoot)
     }
