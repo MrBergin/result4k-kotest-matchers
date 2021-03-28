@@ -1,3 +1,8 @@
-![](https://mrbergin.beta.teamcity.com/app/rest/builds/aggregated/strob:(branch:(buildType:(id:Result4kKotestMatchers_Build),policy:active_history_and_active_vcs_branches),locator:(buildType:(id:Result4kKotestMatchers_Build)))/statusIcon.svg)
+![TeamCity Full Build Status](https://img.shields.io/teamcity/build/s/Result4kKotestMatchers_Build?server=https%3A%2F%2Fmrbergin.beta.teamcity.com&style=for-the-badge)
+![TeamCity Coverage](https://img.shields.io/teamcity/coverage/Result4kKotestMatchers_Build?server=https%3A%2F%2Fmrbergin.beta.teamcity.com)
+
 # result4k-kotest-matchers
 Kotest matchers for the Result4k library
+
+
+
