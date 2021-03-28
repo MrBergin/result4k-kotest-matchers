@@ -60,7 +60,7 @@ object Build : BuildType({
             tasks = "build"
             jdkHome = "%env.JDK_11_0_x64%"
             coverageEngine = jacoco {
-                classLocations = "+:target/main/kotlin/**"
+                classLocations = "+:src/main/kotlin/**"
                 jacocoVersion = "%teamcity.tool.jacoco.0.8.4%"
             }
         }
