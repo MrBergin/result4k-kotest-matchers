@@ -37,13 +37,13 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
-            configurePom {
-                name(artifactId)
-                description(description ?: "")
+            pom {
+                name.set(artifactId)
+                description.set(project.description ?: "")
                 developers {
                     developer {
-                        name("Jordan Bergin")
-                        email("jordan.j.bergin@protonmail.com")
+                        name.set("Jordan Bergin")
+                        name.set("jordan.j.bergin@protonmail.com")
                     }
                 }
             }
