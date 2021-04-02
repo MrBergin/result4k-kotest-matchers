@@ -5,7 +5,7 @@
 Kotest matchers for the Result4k library
 
 
-##Some example usage:
+## Some example usage:
 ```kotlin
 fun exampleDivideByZero() {
 val result = divide(5, 0) //function that returns Failure upon divide by zero

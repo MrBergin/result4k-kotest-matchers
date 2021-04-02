@@ -8,7 +8,7 @@ plugins {
 description = "Kotest matchers for Result4K, the friendly Kotlin Result type"
 
 group = "mr.bergin"
-version = "LOCAL"
+version = "1.0.0-SNAPSHOT"
 
 dependencies {
     api(kotlin("stdlib-jdk8"))
@@ -34,6 +34,15 @@ tasks.withType<KotlinCompile> {
 }
 
 publishing {
+    repositories {
+        maven("https://maven.pkg.github.com/MrBergin/result4k-kotest-matchers") {
+            name = "Github"
+            credentials {
+                username = System.getenv("GithubUser")
+                password = System.getenv("GithubPassword")
+            }
+        }
+    }
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])

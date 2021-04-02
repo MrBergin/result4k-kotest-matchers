@@ -1,6 +1,4 @@
-import java.nio.file.Path
-
-rootProject.name = "resultk4-kotest-matchers"
+rootProject.name = "result4k-kotest-matchers"
 
 pluginManagement {
     repositories {
