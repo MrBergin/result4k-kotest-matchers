@@ -4,11 +4,12 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         mavenCentral()
+        jcenter()
     }
 
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.id.startsWith("org.jetbrains.kotlin")) {
+            if (requested.id.id.startsWith("org.jetbrains.kotlin.")) {
                 useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31")
             }
         }
@@ -18,5 +19,6 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
+        jcenter()
     }
 }

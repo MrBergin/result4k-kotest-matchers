@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm")
     id("maven-publish")
+    id("org.jetbrains.dokka") version "1.4.30"
 }
 
 description = "Kotest matchers for Result4K, the friendly Kotlin Result type"
