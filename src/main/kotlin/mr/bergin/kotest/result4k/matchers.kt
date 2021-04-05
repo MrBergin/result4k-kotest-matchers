@@ -9,14 +9,23 @@ import io.kotest.matchers.should
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
-fun <T> beSuccess(r: T): Matcher<Result<T, *>> = object : Matcher<Result<T, *>> {
-    override fun test(value: Result<T, *>) = MatcherResult(
-        value == Success(r),
-        "$value should be Success($r)",
-        "$value should not be Success($r)",
-    )
+/**
+ * @return a matcher that tests a value is a [Success] wrapping the [expectedValue]
+ */
+fun <T> beSuccess(expectedValue: T): Matcher<Result<T, *>> = object : Matcher<Result<T, *>> {
+    override fun test(value: Result<T, *>): MatcherResult {
+        val expectedSuccess = Success(expectedValue)
+        return MatcherResult(
+            value == expectedSuccess,
+            "$value should be $expectedSuccess",
+            "$value should not be $expectedSuccess",
+        )
+    }
 }
 
+/**
+ * @return a matcher that tests a value is a [Success]
+ */
 fun beSuccess(): Matcher<Result<*, *>> = object : Matcher<Result<*, *>> {
     override fun test(value: Result<*, *>) = MatcherResult(
         value is Success<*>,
@@ -25,6 +34,9 @@ fun beSuccess(): Matcher<Result<*, *>> = object : Matcher<Result<*, *>> {
     )
 }
 
+/**
+ * Tests [this] is of type [Success]
+ */
 @OptIn(ExperimentalContracts::class)
 fun <T> Result<T, *>.shouldBeSuccess() {
     contract {
