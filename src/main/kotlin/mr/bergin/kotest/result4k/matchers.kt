@@ -68,6 +68,9 @@ fun beFailure(): Matcher<Result<*, *>> = object : Matcher<Result<*, *>> {
     )
 }
 
+/**
+ * Tests [this] is of type [Failure]
+ */
 @OptIn(ExperimentalContracts::class)
 fun <E> Result<*, E>.shouldBeFailure() {
     contract {
