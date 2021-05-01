@@ -18,7 +18,7 @@ dependencies {
     api("io.kotest:kotest-assertions-core-jvm:4.4.3")
     api("dev.forkhandles:result4k")
 
-    implementation(platform("dev.forkhandles:forkhandles-bom:1.8.5.0"))
+    api(platform("dev.forkhandles:forkhandles-bom:1.8.5.0"))
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.0")
@@ -44,19 +44,27 @@ val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
     from(dokkaHtml.outputDirectory)
 }
 
+val sourcesJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+}
+
 publishing {
     repositories {
         maven("https://maven.pkg.github.com/MrBergin/result4k-kotest-matchers") {
             name = "Github"
             credentials {
-                username = System.getenv("GithubUser")
-                password = System.getenv("GithubPassword")
+                val githubUser: String? by project
+                val githubPassword: String? by project
+                username = githubUser
+                password = githubPassword
             }
         }
     }
     publications {
         create<MavenPublication>("maven") {
             artifact(javadocJar)
+            artifact(sourcesJar)
             from(components["java"])
             pom {
                 name.set(artifactId)
