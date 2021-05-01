@@ -36,6 +36,14 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+val dokkaHtml by tasks.getting(org.jetbrains.dokka.gradle.DokkaTask::class)
+
+val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
+    dependsOn(dokkaHtml)
+    archiveClassifier.set("javadoc")
+    from(dokkaHtml.outputDirectory)
+}
+
 publishing {
     repositories {
         maven("https://maven.pkg.github.com/MrBergin/result4k-kotest-matchers") {
@@ -48,6 +56,7 @@ publishing {
     }
     publications {
         create<MavenPublication>("maven") {
+            artifact(javadocJar)
             from(components["java"])
             pom {
                 name.set(artifactId)
@@ -55,7 +64,7 @@ publishing {
                 developers {
                     developer {
                         name.set("Jordan Bergin")
-                        name.set("jordan.j.bergin@protonmail.com")
+                        name.set("contact@mrbergin.dev")
                     }
                 }
             }
