@@ -9,8 +9,9 @@ plugins {
 
 description = "Kotest matchers for Result4K, the friendly Kotlin Result type"
 
-group = "mr.bergin"
-version = "1.0.0-SNAPSHOT"
+group = "dev.mrbergin"
+val releaseVersion: String? by project
+version = releaseVersion ?: "LOCAL"
 
 dependencies {
     api(kotlin("stdlib-jdk8"))

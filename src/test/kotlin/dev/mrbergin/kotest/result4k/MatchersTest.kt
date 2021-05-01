@@ -1,4 +1,4 @@
-package mr.bergin.kotest.result4k
+package dev.mrbergin.kotest.result4k
 
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.containsSubstring

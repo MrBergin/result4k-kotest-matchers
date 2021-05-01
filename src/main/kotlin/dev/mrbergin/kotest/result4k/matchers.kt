@@ -1,4 +1,4 @@
-package mr.bergin.kotest.result4k
+package dev.mrbergin.kotest.result4k
 
 import dev.forkhandles.result4k.Failure
 import dev.forkhandles.result4k.Result
@@ -45,21 +45,37 @@ fun <T> Result<T, *>.shouldBeSuccess() {
     this should beSuccess()
 }
 
+/**
+ * Tests [this] is of type [Success]
+ *
+ * @param [block] - lambda which passes in [this] cast to [Success]
+ */
 infix fun <R> Result<R, *>.shouldBeSuccess(block: (Success<R>) -> Unit) {
     this.shouldBeSuccess()
     block(this as Success<R>)
 }
 
+/**
+ * Tests [this] is of type [Success] wrapping [value]
+ *
+ * @param value - the expected value wrapped in a [Success]
+ */
 infix fun <T> Result<T, *>.shouldBeSuccess(value: T) = this should beSuccess(value)
 
-fun <F> beFailure(r: F): Matcher<Result<*, F>> = object : Matcher<Result<*, F>> {
+/**
+ * @return a matcher that tests a value is a [Failure] wrapping the [expectedValue]
+ */
+fun <F> beFailure(expectedValue: F): Matcher<Result<*, F>> = object : Matcher<Result<*, F>> {
     override fun test(value: Result<*, F>) = MatcherResult(
-        value == Failure(r),
-        "$value should be Failure($r)",
-        "$value should not be Failure($r)",
+        value == Failure(expectedValue),
+        "$value should be Failure($expectedValue)",
+        "$value should not be Failure($expectedValue)",
     )
 }
 
+/**
+ * @return a matcher that tests a value is a [Failure]
+ */
 fun beFailure(): Matcher<Result<*, *>> = object : Matcher<Result<*, *>> {
     override fun test(value: Result<*, *>) = MatcherResult(
         value is Failure<*>,
@@ -79,9 +95,19 @@ fun <E> Result<*, E>.shouldBeFailure() {
     this should beFailure()
 }
 
+/**
+ * Tests [this] is of type [Failure]
+ *
+ * @param [block] - lambda which passes in [this] cast to [Failure]
+ */
 infix fun <E> Result<*, E>.shouldBeFailure(block: (Failure<E>) -> Unit) {
     this.shouldBeFailure()
     block(this as Failure<E>)
 }
 
+/**
+ * Tests [this] is of type [Failure] wrapping [value]
+ *
+ * @param value - the expected value wrapped in a [Failure]
+ */
 infix fun <E> Result<*, E>.shouldBeFailure(value: E) = this should beFailure(value)
