@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm")
     id("maven-publish")
+    id("signing")
     id("org.jetbrains.dokka") version "1.4.30"
     id("java-conventions")
 }
@@ -49,15 +50,23 @@ val sourcesJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
     from(sourceSets.main.get().allSource)
 }
 
+val ossrhUsername : String? by project
+val ossrhPassword : String? by project
+
 publishing {
     repositories {
-        maven("https://maven.pkg.github.com/MrBergin/result4k-kotest-matchers") {
-            name = "Github"
+        maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            name = "SonatypeStaging"
             credentials {
-                val githubUser: String? by project
-                val githubPassword: String? by project
-                username = githubUser
-                password = githubPassword
+                username = ossrhUsername
+                password = ossrhPassword
+            }
+        }
+        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+            name = "SonatypeSnapshot"
+            credentials {
+                username = ossrhUsername
+                password = ossrhPassword
             }
         }
     }
@@ -75,7 +84,23 @@ publishing {
                         name.set("contact@mrbergin.dev")
                     }
                 }
+
+                scm {
+                    url.set("https://github.com/MrBergin/result4k-kotest-matchers")
+                }
+
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
             }
+
         }
     }
+}
+
+signing {
+    sign(publishing.publications["maven"])
 }
