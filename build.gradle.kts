@@ -78,6 +78,8 @@ publishing {
             pom {
                 name.set(artifactId)
                 description.set(project.description ?: "")
+                url.set("https://github.com/MrBergin/result4k-kotest-matchers")
+
                 developers {
                     developer {
                         name.set("Jordan Bergin")
@@ -86,7 +88,9 @@ publishing {
                 }
 
                 scm {
-                    url.set("https://github.com/MrBergin/result4k-kotest-matchers")
+                    url.set("git@github.com/MrBergin/result4k-kotest-matchers.git")
+                    connection.set("scm:git:git@github.com/MrBergin/result4k-kotest-matchers.git")
+                    developerConnection.set("scm:git:git@github.com/MrBergin/result4k-kotest-matchers.git")
                 }
 
                 licenses {
