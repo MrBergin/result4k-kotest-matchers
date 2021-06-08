@@ -1,10 +1,10 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+@file:Suppress("UnstableApiUsage")
 
 plugins {
     kotlin("jvm")
     id("maven-publish")
     id("signing")
-    id("org.jetbrains.dokka") version "1.4.30"
+    id("org.jetbrains.dokka")
     id("java-conventions")
 }
 
@@ -15,26 +15,20 @@ val releaseVersion: String? by project
 version = releaseVersion ?: "LOCAL"
 
 dependencies {
+    api(platform(libs.forkhandlesBom))
+
     api(kotlin("stdlib-jdk8"))
-    api("io.kotest:kotest-assertions-core-jvm:4.4.3")
-    api("dev.forkhandles:result4k")
+    api(libs.kotestAssertionsCoreJvm)
+    api(libs.result4k)
 
-    api(platform("dev.forkhandles:forkhandles-bom:1.8.5.0"))
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.0")
-    testImplementation("com.natpryce:hamkrest:1.8.0.1")
+    testImplementation(libs.junitJupiterApi)
+    testImplementation(libs.junitJupiterEngine)
+    testImplementation(libs.hamkrest)
     testImplementation(kotlin("test"))
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 val dokkaHtml by tasks.getting(org.jetbrains.dokka.gradle.DokkaTask::class)
@@ -96,7 +90,7 @@ publishing {
                 licenses {
                     license {
                         name.set("The Apache License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
                     }
                 }
             }
