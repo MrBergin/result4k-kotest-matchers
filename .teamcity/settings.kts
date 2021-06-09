@@ -8,6 +8,12 @@ project {
 
     params {
         password(
+            name = "env.SECRING",
+            value = "credentialsJSON:038e6877-aca5-4e9a-8b5c-b6df3300d727",
+            display = ParameterDisplay.HIDDEN,
+            readOnly = true,
+        )
+        password(
             name = "env.OSSRH_PASSWORD",
             value = "credentialsJSON:f51c6ca9-d418-4fc8-a59e-a8719a3cdb18",
             display = ParameterDisplay.HIDDEN,
