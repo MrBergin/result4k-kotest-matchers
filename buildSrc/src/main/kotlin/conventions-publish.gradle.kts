@@ -8,9 +8,13 @@ plugins {
 }
 
 val releaseVersion: String? by project
+
 val ossrhUsername : String? by project
 val ossrhPassword : String? by project
 
+val signingKey: String? by project
+val signingKeyId: String? by project
+val signingPassword: String? by project
 
 group = "dev.mrbergin"
 version = releaseVersion ?: "LOCAL"
@@ -81,5 +85,6 @@ publishing {
 }
 
 signing {
+    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
     sign(publishing.publications["maven"])
 }

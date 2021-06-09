@@ -7,35 +7,29 @@ version = "2020.2"
 project {
 
     params {
-        password(
-            name = "env.SECRING",
-            value = "credentialsJSON:038e6877-aca5-4e9a-8b5c-b6df3300d727",
-            display = ParameterDisplay.HIDDEN,
+        text(
+            name = "env.ORG_GRADLE_PROJECT_ossrhUsername",
+            value = "mrbergin",
             readOnly = true,
+            allowEmpty = true,
         )
         password(
-            name = "env.OSSRH_PASSWORD",
+            name = "env.ORG_GRADLE_PROJECT_ossrhPassword",
             value = "credentialsJSON:f51c6ca9-d418-4fc8-a59e-a8719a3cdb18",
             display = ParameterDisplay.HIDDEN,
             readOnly = true,
         )
         password(
-            name = "env.SIGNING_KEY_ID",
+            name = "env.ORG_GRADLE_PROJECT_signingKeyId",
             value = "credentialsJSON:15a6bff2-8f23-4dd5-a7b3-ebf3ae2d1b40",
             display = ParameterDisplay.HIDDEN,
             readOnly = true
         )
         password(
-            name = "env.SIGNING_PASSWORD",
+            name = "env.ORG_GRADLE_PROJECT_signingPassword",
             value = "credentialsJSON:f51c6ca9-d418-4fc8-a59e-a8719a3cdb18",
             display = ParameterDisplay.HIDDEN,
             readOnly = true,
-        )
-        text(
-            name = "env.OSSRH_USERNAME",
-            value = "mrbergin",
-            readOnly = true,
-            allowEmpty = true,
         )
     }
 
@@ -60,7 +54,6 @@ project {
 
 object Build : BuildType({
     name = "Build"
-
     allowExternalStatus = true
 
     vcs {
@@ -82,15 +75,10 @@ object Build : BuildType({
         vcs {
         }
     }
-
-    requirements {
-        matches("teamcity.agent.jvm.os.family", "Linux")
-    }
 })
 
 object Release : BuildType({
     name = "Release"
-
     allowExternalStatus = true
 
     vcs {
@@ -100,18 +88,7 @@ object Release : BuildType({
     steps {
         gradle {
             tasks = ":publishMavenPublicationToSonatypeStagingRepository"
-            gradleParams = listOf(
-                "signing.keyId=%env.SIGNING_KEY_ID%",
-                "signing.password=%env.SIGNING_PASSWORD%",
-                "signing.secretKeyRingFile=%teamcity.build.tempDir%/secring.gpg",
-                "ossrhUsername=%env.OSSRH_USERNAME%",
-                "ossrhPassword=%env.OSSRH_PASSWORD%",
-            ).map { "-P$it" }.joinToString { " " }
             jdkHome = "%env.JDK_11_0_x64%"
         }
-    }
-
-    requirements {
-        matches("teamcity.agent.jvm.os.family", "Linux")
     }
 })
