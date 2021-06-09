@@ -6,6 +6,33 @@ version = "2020.2"
 
 project {
 
+    params {
+        password(
+            name = "env.OSSRH_PASSWORD",
+            value = "credentialsJSON:f51c6ca9-d418-4fc8-a59e-a8719a3cdb18",
+            display = ParameterDisplay.HIDDEN,
+            readOnly = true,
+        )
+        password(
+            name = "env.SIGNING_KEY_ID",
+            value = "credentialsJSON:15a6bff2-8f23-4dd5-a7b3-ebf3ae2d1b40",
+            display = ParameterDisplay.HIDDEN,
+            readOnly = true
+        )
+        password(
+            name = "env.SIGNING_PASSWORD",
+            value = "credentialsJSON:f51c6ca9-d418-4fc8-a59e-a8719a3cdb18",
+            display = ParameterDisplay.HIDDEN,
+            readOnly = true,
+        )
+        text(
+            name = "env.OSSRH_USERNAME",
+            value = "mrbergin",
+            readOnly = true,
+            allowEmpty = true,
+        )
+    }
+
     buildType(Build)
 
     features {
