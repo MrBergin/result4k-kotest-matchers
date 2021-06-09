@@ -6,39 +6,6 @@ version = "2020.2"
 
 project {
 
-    params {
-        text(
-            name = "env.ORG_GRADLE_PROJECT_ossrhUsername",
-            value = "mrbergin",
-            readOnly = true,
-            allowEmpty = true,
-        )
-        password(
-            name = "env.ORG_GRADLE_PROJECT_ossrhPassword",
-            value = "credentialsJSON:f51c6ca9-d418-4fc8-a59e-a8719a3cdb18",
-            display = ParameterDisplay.HIDDEN,
-            readOnly = true,
-        )
-        password(
-            name = "env.ORG_GRADLE_PROJECT_signingKeyId",
-            value = "credentialsJSON:15a6bff2-8f23-4dd5-a7b3-ebf3ae2d1b40",
-            display = ParameterDisplay.HIDDEN,
-            readOnly = true
-        )
-        password(
-            name = "env.ORG_GRADLE_PROJECT_signingPassword",
-            value = "credentialsJSON:f51c6ca9-d418-4fc8-a59e-a8719a3cdb18",
-            display = ParameterDisplay.HIDDEN,
-            readOnly = true,
-        )
-        password(
-            name = "env.ORG_GRADLE_PROJECT_signingKey",
-            value = "credentialsJSON:058438f9-5fcb-4c6b-be28-dcfb0f6f36da",
-            display = ParameterDisplay.HIDDEN,
-            readOnly = true,
-        )
-    }
-
     buildType(Build)
     buildType(Release)
 
@@ -96,5 +63,38 @@ object Release : BuildType({
             tasks = ":publishMavenPublicationToSonatypeStagingRepository"
             jdkHome = "%env.JDK_11_0_x64%"
         }
+    }
+
+    params {
+        text(
+            name = "env.ORG_GRADLE_PROJECT_ossrhUsername",
+            value = "mrbergin",
+            readOnly = true,
+            allowEmpty = true,
+        )
+        password(
+            name = "env.ORG_GRADLE_PROJECT_ossrhPassword",
+            value = "credentialsJSON:f51c6ca9-d418-4fc8-a59e-a8719a3cdb18",
+            display = ParameterDisplay.HIDDEN,
+            readOnly = true,
+        )
+        password(
+            name = "env.ORG_GRADLE_PROJECT_signingKeyId",
+            value = "credentialsJSON:15a6bff2-8f23-4dd5-a7b3-ebf3ae2d1b40",
+            display = ParameterDisplay.HIDDEN,
+            readOnly = true
+        )
+        password(
+            name = "env.ORG_GRADLE_PROJECT_signingPassword",
+            value = "credentialsJSON:f51c6ca9-d418-4fc8-a59e-a8719a3cdb18",
+            display = ParameterDisplay.HIDDEN,
+            readOnly = true,
+        )
+        password(
+            name = "env.ORG_GRADLE_PROJECT_signingKey",
+            value = "credentialsJSON:058438f9-5fcb-4c6b-be28-dcfb0f6f36da",
+            display = ParameterDisplay.HIDDEN,
+            readOnly = true,
+        )
     }
 })
