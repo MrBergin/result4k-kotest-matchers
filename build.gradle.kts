@@ -6,9 +6,6 @@ plugins {
     `conventions-publish`
 }
 
-description = "Kotest matchers for Result4K, the friendly Kotlin Result type"
-
-
 dependencies {
     api(platform(Platforms.forkhandlesBom))
 

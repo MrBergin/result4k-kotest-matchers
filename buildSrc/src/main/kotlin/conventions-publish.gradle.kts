@@ -18,6 +18,7 @@ val signingPassword: String? by project
 
 group = "dev.mrbergin"
 version = releaseVersion ?: "LOCAL"
+description = "Kotest matchers for Result4K, the friendly Kotlin Result type"
 
 val dokkaHtml by tasks.getting(org.jetbrains.dokka.gradle.DokkaTask::class)
 
