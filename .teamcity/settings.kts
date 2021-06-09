@@ -31,6 +31,12 @@ project {
             display = ParameterDisplay.HIDDEN,
             readOnly = true,
         )
+        password(
+            name = "env.ORG_GRADLE_PROJECT_signingKey",
+            value = "credentialsJSON:058438f9-5fcb-4c6b-be28-dcfb0f6f36da",
+            display = ParameterDisplay.HIDDEN,
+            readOnly = true,
+        )
     }
 
     buildType(Build)
