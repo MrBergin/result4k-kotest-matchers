@@ -4,11 +4,21 @@
 # result4k-kotest-matchers
 Kotest matchers for the Result4k library
 
+## Example Gradle usage:
+```kotlin
+repositories {
+    mavenCentral()
+}
+dependencies {
+    testImplementation("dev.mrbergin:result4k-kotest-matchers:0.0.2")    
+}
+```
 
 ## Some example usage:
 ```kotlin
+
 fun exampleDivideByZero() {
-val result = divide(5, 0) //function that returns Failure upon divide by zero
+    val result = divide(5, 0)
 
     //all of these would pass
     result.shouldBeFailure()
@@ -19,5 +29,15 @@ val result = divide(5, 0) //function that returns Failure upon divide by zero
 
     //but this will fail with the appropriate message
     result shouldBeSuccess 5 //Throws AssertionError like: Failure(DivideByZero) should be Success(5)
+}
+
+object DivideByZeroFailure
+
+fun divide(dividend: Int, divisor: Int): Result<Int, DivideByZeroFailure> {
+    return if (divisor == 0) {
+        Failure(DivideByZeroFailure)
+    } else {
+        Success(dividend / divisor)
+    }
 }
 ```
