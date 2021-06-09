@@ -40,6 +40,7 @@ project {
     }
 
     buildType(Build)
+    buildType(Release)
 
     features {
         feature {
@@ -79,6 +80,34 @@ object Build : BuildType({
 
     triggers {
         vcs {
+        }
+    }
+
+    requirements {
+        matches("teamcity.agent.jvm.os.family", "Linux")
+    }
+})
+
+object Release : BuildType({
+    name = "Release"
+
+    allowExternalStatus = true
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+
+    steps {
+        gradle {
+            tasks = ":publishMavenPublicationToSonatypeStagingRepository"
+            gradleParams = listOf(
+                "signing.keyId=%env.SIGNING_KEY_ID%",
+                "signing.password=%env.SIGNING_PASSWORD%",
+                "signing.secretKeyRingFile=%teamcity.build.tempDir%/secring.gpg",
+                "ossrhUsername=%env.OSSRH_USERNAME%",
+                "ossrhPassword=%env.OSSRH_PASSWORD%",
+            ).map { "-P$it" }.joinToString { " " }
+            jdkHome = "%env.JDK_11_0_x64%"
         }
     }
 
