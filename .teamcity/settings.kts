@@ -35,7 +35,7 @@ object Build : BuildType({
 
     steps {
         gradle {
-            tasks = "build"
+            tasks = ":build"
             jdkHome = "%env.JDK_11_0_x64%"
             coverageEngine = jacoco {
                 classLocations = "+:build/classes/kotlin/main/**"

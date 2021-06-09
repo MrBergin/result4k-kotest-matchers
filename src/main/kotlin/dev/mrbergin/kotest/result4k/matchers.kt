@@ -6,6 +6,7 @@ import dev.forkhandles.result4k.Success
 import io.kotest.matchers.Matcher
 import io.kotest.matchers.MatcherResult
 import io.kotest.matchers.should
+import io.kotest.matchers.types.shouldBeInstanceOf
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
@@ -50,9 +51,9 @@ fun <T> Result<T, *>.shouldBeSuccess() {
  *
  * @param [block] - lambda which passes in [this] cast to [Success]
  */
-infix fun <R> Result<R, *>.shouldBeSuccess(block: (Success<R>) -> Unit) {
+infix fun <R> Result<R, *>.shouldBeSuccess(block: (R) -> Unit) {
     this.shouldBeSuccess()
-    block(this as Success<R>)
+    block((this as Success<R>).value)
 }
 
 /**
@@ -100,9 +101,9 @@ fun <E> Result<*, E>.shouldBeFailure() {
  *
  * @param [block] - lambda which passes in [this] cast to [Failure]
  */
-infix fun <E> Result<*, E>.shouldBeFailure(block: (Failure<E>) -> Unit) {
+infix fun <E> Result<*, E>.shouldBeFailure(block: (E) -> Unit) {
     this.shouldBeFailure()
-    block(this as Failure<E>)
+    block((this as Failure<E>).reason)
 }
 
 /**

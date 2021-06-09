@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
+import kotlin.test.assertEquals
 
 class MatchersTest {
     @Test
@@ -47,7 +48,7 @@ class MatchersTest {
 
         assertAll(
             { assertDoesNotThrow { subject.shouldBeSuccess() } },
-            { assertDoesNotThrow { subject.shouldBeSuccess { } } },
+            { assertDoesNotThrow { subject.shouldBeSuccess { assertEquals(expectedValue, it) } } },
             { assertDoesNotThrow { subject.shouldBeSuccess(expectedValue) } },
         )
     }
@@ -59,7 +60,7 @@ class MatchersTest {
 
         assertAll(
             { assertDoesNotThrow { subject.shouldBeFailure() } },
-            { assertDoesNotThrow { subject.shouldBeFailure { } } },
+            { assertDoesNotThrow { subject.shouldBeFailure { assertEquals(expectedValue, it) } } },
             { assertDoesNotThrow { subject.shouldBeFailure(expectedValue) } },
         )
     }

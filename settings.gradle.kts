@@ -1,6 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-enableFeaturePreview("VERSION_CATALOGS")
-
 rootProject.name = "result4k-kotest-matchers"
 
 pluginManagement {
@@ -12,6 +9,9 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
+        jcenter()
         mavenCentral()
     }
 }
+
+include(":samples")
