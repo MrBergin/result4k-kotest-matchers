@@ -11,6 +11,12 @@ accordingly, and delete the patch script.
 changeBuildType(RelativeId("Release")) {
     params {
         expect {
+            password("env.ORG_GRADLE_PROJECT_signingKey", "credentialsJSON:058438f9-5fcb-4c6b-be28-dcfb0f6f36da", display = ParameterDisplay.HIDDEN)
+        }
+        update {
+            password("env.ORG_GRADLE_PROJECT_signingKey", "credentialsJSON:ac4d325d-1d86-4fce-ac10-3302efd2445f", display = ParameterDisplay.HIDDEN)
+        }
+        expect {
             password("env.ORG_GRADLE_PROJECT_signingKeyId", "credentialsJSON:15a6bff2-8f23-4dd5-a7b3-ebf3ae2d1b40", display = ParameterDisplay.HIDDEN)
         }
         update {
