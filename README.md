@@ -10,7 +10,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    testImplementation("dev.mrbergin:result4k-kotest-matchers:0.0.2")    
+    testImplementation("dev.mrbergin:result4k-kotest-matchers:0.0.3")    
 }
 ```
 

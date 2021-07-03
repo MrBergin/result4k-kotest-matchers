@@ -4,7 +4,6 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
@@ -12,6 +11,6 @@ dependencies {
     implementation(platform(Platforms.forkhandlesBom))
     implementation(Libs.result4k)
 
-    testImplementation("dev.mrbergin:result4k-kotest-matchers:LOCAL")
+    testImplementation(project(":"))
     testImplementation("io.kotest:kotest-runner-junit5:${Versions.kotest}")
 }
