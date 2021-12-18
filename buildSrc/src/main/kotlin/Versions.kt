@@ -1,6 +1,5 @@
 object Versions {
     val java = "8"
-    val kotlin = "1.6.10"
     val forkhandles = "1.14.0.1"
     val kotest = "4.6.0"
     val junit = "5.7.2"
