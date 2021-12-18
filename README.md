@@ -1,20 +1,28 @@
 ![TeamCity Full Build Status](https://img.shields.io/teamcity/build/s/Result4kKotestMatchers_Build?server=https%3A%2F%2Fmrbergin.beta.teamcity.com&style=for-the-badge)
-![TeamCity Coverage](https://img.shields.io/teamcity/coverage/Result4kKotestMatchers_Build?server=https%3A%2F%2Fmrbergin.beta.teamcity.com&style=for-the-badge)
 
 # result4k-kotest-matchers
+
 Kotest matchers for the Result4k library
 
+Version Matrix
+
+|  result4k-kotest-matchers   | forkhandles   | kotlin  |
+|:---------------------------:|---------------|---------|
+|            1.0.0            | 1.14.0.1      | 1.6.10  |
+
 ## Example Gradle usage:
+
 ```kotlin
 repositories {
     mavenCentral()
 }
 dependencies {
-    testImplementation("dev.mrbergin:result4k-kotest-matchers:0.0.3")    
+    testImplementation("dev.mrbergin:result4k-kotest-matchers:1.0.0")
 }
 ```
 
 ## Some example usage:
+
 ```kotlin
 
 fun exampleDivideByZero() {
