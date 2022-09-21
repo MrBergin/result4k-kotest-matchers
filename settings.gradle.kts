@@ -8,10 +8,11 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
     repositories {
-        jcenter()
         mavenCentral()
     }
 }
 
 include(":samples")
+includeBuild("build-src")

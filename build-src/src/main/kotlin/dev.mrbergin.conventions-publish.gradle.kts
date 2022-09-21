@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.java
-
 plugins {
     java
     id("maven-publish")

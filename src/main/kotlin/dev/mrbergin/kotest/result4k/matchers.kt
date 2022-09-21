@@ -6,7 +6,6 @@ import dev.forkhandles.result4k.Success
 import io.kotest.matchers.Matcher
 import io.kotest.matchers.MatcherResult
 import io.kotest.matchers.should
-import io.kotest.matchers.types.shouldBeInstanceOf
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
@@ -18,8 +17,8 @@ fun <T> beSuccess(expectedValue: T): Matcher<Result<T, *>> = object : Matcher<Re
         val expectedSuccess = Success(expectedValue)
         return MatcherResult(
             value == expectedSuccess,
-            "$value should be $expectedSuccess",
-            "$value should not be $expectedSuccess",
+            { "$value should be $expectedSuccess" },
+            { "$value should not be $expectedSuccess" },
         )
     }
 }
@@ -30,8 +29,8 @@ fun <T> beSuccess(expectedValue: T): Matcher<Result<T, *>> = object : Matcher<Re
 fun beSuccess(): Matcher<Result<*, *>> = object : Matcher<Result<*, *>> {
     override fun test(value: Result<*, *>) = MatcherResult(
         value is Success<*>,
-        "$value should be Success",
-        "$value should not be Success",
+        { "$value should be Success" },
+        { "$value should not be Success" },
     )
 }
 
@@ -69,8 +68,8 @@ infix fun <T> Result<T, *>.shouldBeSuccess(value: T) = this should beSuccess(val
 fun <F> beFailure(expectedValue: F): Matcher<Result<*, F>> = object : Matcher<Result<*, F>> {
     override fun test(value: Result<*, F>) = MatcherResult(
         value == Failure(expectedValue),
-        "$value should be Failure($expectedValue)",
-        "$value should not be Failure($expectedValue)",
+        { "$value should be Failure($expectedValue)" },
+        { "$value should not be Failure($expectedValue)" },
     )
 }
 
@@ -80,8 +79,8 @@ fun <F> beFailure(expectedValue: F): Matcher<Result<*, F>> = object : Matcher<Re
 fun beFailure(): Matcher<Result<*, *>> = object : Matcher<Result<*, *>> {
     override fun test(value: Result<*, *>) = MatcherResult(
         value is Failure<*>,
-        "$value should be Failure",
-        "$value should not be Failure",
+        { "$value should be Failure" },
+        { "$value should not be Failure" },
     )
 }
 
