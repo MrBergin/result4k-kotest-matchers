@@ -1,16 +1,12 @@
 plugins {
-    kotlin("jvm")
-    `conventions-java`
+    id("dev.mrbergin.conventions-kotlin")
 }
 
-repositories {
-    mavenCentral()
-}
 
 dependencies {
-    implementation(platform(Platforms.forkhandlesBom))
-    implementation(Libs.result4k)
+    implementation(platform(libs.forkhandles))
+    implementation(libs.result4k)
 
     testImplementation(project(":"))
-    testImplementation("io.kotest:kotest-runner-junit5:${Versions.kotest}")
+    testImplementation(libs.kotest.runner.junit5)
 }

@@ -1,0 +1,21 @@
+[versions]
+java = "17"
+kotlin = "1.7.10"
+junit = "5.9.1"
+kotest = "5.4.2"
+forkhandles = "2.2.0.0"
+hamkrest = "1.8.0.1"
+
+[libraries]
+
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "kotlin" }
+
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+
+forkhandles = { module = "dev.forkhandles:forkhandles-bom", version.ref = "forkhandles" }
+result4k = { module = "dev.forkhandles:result4k", version.ref = "forkhandles" }
+hamkrest = { module = "com.natpryce:hamkrest", version.ref = "hamkrest" }

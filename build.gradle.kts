@@ -1,20 +1,19 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    kotlin("jvm")
-    `conventions-java`
-    `conventions-publish`
+    id("dev.mrbergin.conventions-kotlin")
+    id("dev.mrbergin.conventions-publish")
 }
 
 dependencies {
-    api(platform(Platforms.forkhandlesBom))
+    api(platform(libs.forkhandles))
 
     api(kotlin("stdlib-jdk8"))
-    api(Libs.kotestAssertionsCoreJvm)
-    api(Libs.result4k)
+    api(libs.kotest.assertions.core)
+    api(libs.result4k)
 
-    testImplementation(Libs.junitJupiterApi)
-    testImplementation(Libs.junitJupiterEngine)
-    testImplementation(Libs.hamkrest)
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.engine)
+    testImplementation(libs.hamkrest)
     testImplementation(kotlin("test"))
 }
