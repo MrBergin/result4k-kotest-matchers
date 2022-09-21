@@ -6,5 +6,11 @@
   "schedule": [
     "after 10:45pm every day"
   ],
-  "ignorePaths": ["**/build-src/**"]
+  "ignorePaths": ["**/build-src/**"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "automerge": true
+    }
+  ]
 }
