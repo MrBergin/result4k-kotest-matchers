@@ -1,6 +1,6 @@
 [versions]
 java = "17"
-kotlin = "1.7.0"
+kotlin = "1.7.10"
 junit = "5.9.1"
 kotest = "5.4.2"
 forkhandles = "2.2.0.0"
