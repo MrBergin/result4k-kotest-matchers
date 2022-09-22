@@ -1,4 +1,4 @@
-![TeamCity Full Build Status](https://img.shields.io/teamcity/build/s/Result4kKotestMatchers_Build?server=https%3A%2F%2Fmrbergin.beta.teamcity.com&style=for-the-badge)
+[![Build](https://github.com/MrBergin/result4k-kotest-matchers/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/MrBergin/result4k-kotest-matchers/actions/workflows/build.yaml)
 
 # result4k-kotest-matchers
 
@@ -6,9 +6,10 @@ Kotest matchers for the Result4k library
 
 Version Matrix
 
-|  result4k-kotest-matchers   | forkhandles   | kotlin  |
-|:---------------------------:|---------------|---------|
-|            1.0.0            | 1.14.0.1      | 1.6.10  |
+| result4k-kotest-matchers | forkhandles | kotlin |
+|:------------------------:|-------------|--------|
+|          1.0.0           | 1.14.0.1    | 1.6.10 |
+|            ?             | 2.2.0.0     | 1.7.10 |
 
 ## Example Gradle usage:
 
