@@ -1,0 +1,33 @@
+name: Testing CalVer
+on:
+  push:
+    branches:
+      - test-calver
+
+jobs:
+  calver:
+    name: Testing CalVer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Release
+        run: |
+          NEXT_RELEASE=$(date "+%Y.%m.%d")
+          LAST_RELEASE=$(git tag --sort=v:refname |grep "^20[^\-]*$" |tail -n 1)
+          MAJOR_LAST_RELEASE=$(echo "${LAST_RELEASE}" | awk -v l=${#NEXT_RELEASE} '{ string=substr($0, 1, l); print string; }' )
+          if [ "${MAJOR_LAST_RELEASE}" = "${NEXT_RELEASE}" ]; then
+            MINOR_LAST_RELEASE=$(echo "${LAST_RELEASE}" | awk -v l=`expr ${#NEXT_RELEASE} + 2` '{ string=substr($0, l); print string; }' )
+            NEXT_RELEASE=${MAJOR_LAST_RELEASE}.$((MINOR_LAST_RELEASE + 1))
+          fi
+          POST_BODY='{"tag_name":"$NEXT_RELEASE","name":"$NEXT_RELEASE","draft":false,"prerelease":false,"generate_release_notes":true}'
+          echo Next Release is: $NEXT_RELEASE
+          git tag $NEXT_RELEASE
+          git push origin $NEXT_RELEASE
+          curl -X POST --location "https://api.github.com/repos/mrbergin/result4k-kotest-matchers/releases" \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -d "${POST_BODY}"
