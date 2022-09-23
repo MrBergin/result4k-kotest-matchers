@@ -13,13 +13,12 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: main
 
       - name: Calver Release
         uses: StephaneBour/actions-calver@master
         id: calver
         with:
-          date_format: "%Y-%m-%d"
+          date_format: "%Y.%m.%d"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
