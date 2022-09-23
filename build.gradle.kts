@@ -3,6 +3,7 @@
 plugins {
     id("dev.mrbergin.conventions-kotlin")
     id("dev.mrbergin.conventions-publish")
+    id("dev.mrbergin.conventions-sast")
 }
 
 dependencies {
