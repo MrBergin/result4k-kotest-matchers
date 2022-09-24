@@ -1,5 +1,7 @@
 [versions]
-java = "17"
+kotlin-jvm-build = "17"
+kotlin-jvm-target = "1.8"
+java-release-target = "8"
 kotlin = "1.7.10"
 junit = "5.9.1"
 kotest = "5.4.2"
