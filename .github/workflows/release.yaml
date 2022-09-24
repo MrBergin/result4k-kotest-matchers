@@ -43,7 +43,7 @@ jobs:
           GPG_SIGNING_KEY_ID: ${{ secrets.GPG_SIGNING_KEY_ID }}
           GPG_SIGNING_PASSWORD: ${{ secrets.GPG_SIGNING_PASSWORD }}
         run: |
-          ./gradlew publishMavenPublicationToSonatypeStagingRepository  \
+          ./gradlew check publishToSonatype closeAndReleaseSonatypeStagingRepository \
             -PreleaseVersion="$VERSION" \
             -PossrhUsername="$OSSRH_USERNAME" \
             -PossrhPassword="$OSSRH_PASSWORD" \
