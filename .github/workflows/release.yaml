@@ -59,9 +59,7 @@ jobs:
         env:
           VERSION: ${{ steps.release-version.outputs.VERSION }}
         run: |
-          git tag $VERSION
-          git push origin $VERSION
           curl -X POST --location "https://api.github.com/repos/mrbergin/result4k-kotest-matchers/releases" \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-          -d '{"tag_name":"'"$VERSION"'","name":"'"$VERSION"'","draft":false,"prerelease":false,"generate_release_notes":true}'
+          -d '{"tag_name":"'"$VERSION"'","target_commitish":"main","name":"'"$VERSION"'","draft":false,"prerelease":false,"generate_release_notes":true}'
