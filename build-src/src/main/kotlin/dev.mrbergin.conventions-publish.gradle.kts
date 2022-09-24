@@ -3,12 +3,13 @@ plugins {
     id("maven-publish")
     id("signing")
     id("org.jetbrains.dokka")
+    id("io.github.gradle-nexus.publish-plugin")
 }
 
 val releaseVersion: String? by project
 
-val ossrhUsername : String? by project
-val ossrhPassword : String? by project
+val ossrhUsername: String? by project
+val ossrhPassword: String? by project
 
 val signingKey: String? by project
 val signingKeyId: String? by project
@@ -32,22 +33,6 @@ val sourcesJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
 }
 
 publishing {
-    repositories {
-        maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
-            name = "SonatypeStaging"
-            credentials {
-                username = ossrhUsername
-                password = ossrhPassword
-            }
-        }
-        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") {
-            name = "SonatypeSnapshot"
-            credentials {
-                username = ossrhUsername
-                password = ossrhPassword
-            }
-        }
-    }
     publications {
         create<MavenPublication>("maven") {
             artifact(javadocJar)
@@ -79,6 +64,17 @@ publishing {
                 }
             }
 
+        }
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+            username.set(ossrhUsername)
+            password.set(ossrhPassword)
         }
     }
 }
