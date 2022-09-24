@@ -9,7 +9,7 @@ Version Matrix
 | result4k-kotest-matchers | forkhandles | kotlin |
 |:------------------------:|-------------|--------|
 |          1.0.0           | 1.14.0.1    | 1.6.10 |
-|        2022-09-22        | 2.2.0.0     | 1.7.10 |
+| 2022-09-22..2022.09.24.1 | 2.2.0.0     | 1.7.10 |
 
 ## Example Gradle usage:
 
@@ -18,7 +18,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    testImplementation("dev.mrbergin:result4k-kotest-matchers:2022-09-22")
+    testImplementation("dev.mrbergin:result4k-kotest-matchers:2022.09.24.1")
 }
 ```
 
