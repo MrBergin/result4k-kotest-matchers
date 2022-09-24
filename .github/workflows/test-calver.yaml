@@ -1,0 +1,35 @@
+name: Testing CalVer
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  calver:
+    name: Testing CalVer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Calver Release
+        uses: StephaneBour/actions-calver@master
+        id: calver
+        with:
+          date_format: "%Y.%m.%d"
+          release: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release
+        run: |
+            git tag ${{ steps.calver.outputs.release }}
+            git push origin ${{ steps.calver.outputs.release }}
+            curl -X POST -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              https://api.github.com/repos/mrbergin/result4k-kotest-matchers/releases \
+              -d '{"tag_name":"${{ steps.calver.outputs.release }}","target_commitish":"master","name":"${{ steps.calver.outputs.release }}","draft":false,"prerelease":false,"generate_release_notes":true}'
