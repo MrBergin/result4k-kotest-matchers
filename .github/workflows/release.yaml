@@ -14,13 +14,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Calver Release
-        uses: StephaneBour/actions-calver@master
-        id: calver
-        with:
-          date_format: "%Y.%m.%d"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Calculate Release Version
+        run: |
+          NEXT_RELEASE=$(date "+%Y.%m.%d")
+          LAST_RELEASE=$(git tag --sort=v:refname |grep "^20[^\-]*$" |tail -n 1)
+          MAJOR_LAST_RELEASE=$(echo "${LAST_RELEASE}" | awk -v l=${#NEXT_RELEASE} '{ string=substr($0, 1, l); print string; }' )
+          if [ "${MAJOR_LAST_RELEASE}" = "${NEXT_RELEASE}" ]; then
+            MINOR_LAST_RELEASE=$(echo "${LAST_RELEASE}" | awk -v l=`expr ${#NEXT_RELEASE} + 2` '{ string=substr($0, l); print string; }' )
+            NEXT_RELEASE=${MAJOR_LAST_RELEASE}.$((MINOR_LAST_RELEASE + 1))
+          fi
+          echo ::set-output name=VERSION::"${NEXT_RELEASE}"
+        id: release-version
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -33,9 +37,9 @@ jobs:
         with:
           cache-read-only: true
 
-      - name: Release
+      - name: Publish Release Artifacts
         env:
-          VERSION: ${{ steps.calver.outputs.release }}
+          VERSION: ${{ steps.release-version.outputs.VERSION }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,3 +54,14 @@ jobs:
             -PsigningKey="$GPG_SIGNING_KEY" \
             -PsigningKeyId="$GPG_SIGNING_KEY_ID" \
             -PsigningPassword="$GPG_SIGNING_PASSWORD"
+
+      - name: Create Tag And GitHub Release
+        env:
+          VERSION: ${{ steps.release-version.outputs.VERSION }}
+        run: |
+          git tag $VERSION
+          git push origin $VERSION
+          curl -X POST --location "https://api.github.com/repos/mrbergin/result4k-kotest-matchers/releases" \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -d '{"tag_name":"'"$VERSION"'","name":"'"$VERSION"'","draft":false,"prerelease":false,"generate_release_notes":true}'
