@@ -6,10 +6,11 @@ Kotest matchers for the Result4k library
 
 Version Matrix
 
-| result4k-kotest-matchers | forkhandles | kotlin |
-|:------------------------:|-------------|--------|
-|          1.0.0           | 1.14.0.1    | 1.6.10 |
-| 2022-09-22..2022.09.24.1 | 2.2.0.0     | 1.7.10 |
+| result4k-kotest-matchers | forkhandles | kotlin | java |
+|:------------------------:|-------------|--------|------|
+|          1.0.0           | 1.14.0.1    | 1.6.10 | 8    |
+|        2022-09-22        | 2.2.0.0     | 1.7.10 | 17   |
+| 2022.09.24.1..2022.09.25 | 2.2.0.0     | 1.7.10 | 8    |
 
 ## Example Gradle usage:
 
@@ -18,7 +19,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    testImplementation("dev.mrbergin:result4k-kotest-matchers:2022.09.24.1")
+    testImplementation("dev.mrbergin:result4k-kotest-matchers:2022.09.25")
 }
 ```
 
