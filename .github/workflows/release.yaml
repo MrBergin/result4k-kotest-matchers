@@ -16,7 +16,7 @@ jobs:
 
       - name: Calculate Release Version
         run: |
-          NEXT_RELEASE=$(date "+%Y.%m.%d")
+          NEXT_RELEASE=$(date "+%Y.%-m.%-d")
           LAST_RELEASE=$(git tag --sort=v:refname |grep "^20[^\-]*$" |tail -n 1)
           MAJOR_LAST_RELEASE=$(echo "${LAST_RELEASE}" | awk -v l=${#NEXT_RELEASE} '{ string=substr($0, 1, l); print string; }' )
           if [ "${MAJOR_LAST_RELEASE}" = "${NEXT_RELEASE}" ]; then
