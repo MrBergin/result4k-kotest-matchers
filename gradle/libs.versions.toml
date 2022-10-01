@@ -3,6 +3,7 @@ kotlin-jvm-build = "17"
 kotlin-jvm-target = "1.8"
 java-release-target = "8"
 kotlin = "1.7.20"
+dokka = "1.7.10"
 junit = "5.9.1"
 kotest = "5.4.2"
 forkhandles = "2.2.0.0"
@@ -13,7 +14,7 @@ publish-plugin = "1.1.0"
 [libraries]
 
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "kotlin" }
+dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 publish-plugin = { module = "io.github.gradle-nexus:publish-plugin", version.ref = "publish-plugin" }
 
