@@ -7,6 +7,6 @@ dependencies {
     implementation(platform(libs.forkhandles))
     implementation(libs.result4k)
 
-    testImplementation(project(":"))
+    testImplementation(projects.result4kKotestMatchers)
     testImplementation(libs.kotest.runner.junit5)
 }
