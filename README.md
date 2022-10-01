@@ -12,7 +12,8 @@ Kotest matchers for the [Result4k](https://github.com/fork-handles/forkhandles/t
 |:------------------------:|-------------|--------|------|
 |          1.0.0           | 1.14.0.1    | 1.6.10 | 8    |
 |        2022-09-22        | 2.2.0.0     | 1.7.10 | 17   |
-| 2022.09.24.1..2022.9.26  | 2.2.0.0     | 1.7.10 | 8    |
+| 2022.09.24.1..2022.10.1  | 2.2.0.0     | 1.7.10 | 8    |
+|        2022.10.2         | 2.2.0.0     | 1.7.20 | 8    |
 
 ## Example Gradle usage:
 
@@ -21,7 +22,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    testImplementation("dev.mrbergin:result4k-kotest-matchers:2022.9.26")
+    testImplementation("dev.mrbergin:result4k-kotest-matchers:2022.10.2")
 }
 ```
 
