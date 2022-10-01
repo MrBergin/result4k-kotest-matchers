@@ -16,3 +16,8 @@ dependencyResolutionManagement {
 
 include(":samples")
 includeBuild("build-src")
+
+
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
