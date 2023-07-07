@@ -2,7 +2,7 @@
 kotlin-jvm-build = "17"
 kotlin-jvm-target = "1.8"
 java-release-target = "8"
-kotlin = "1.8.22"
+kotlin = "1.9.0"
 dokka = "1.8.20"
 junit = "5.9.3"
 kotest = "5.6.2"
