@@ -8,7 +8,7 @@ junit = "5.13.2"
 kotest = "5.9.1"
 forkhandles = "2.14.0.0"
 hamkrest = "1.8.0.1"
-detekt = "1.23.0"
+detekt = "1.23.8"
 publish-plugin = "1.1.0"
 
 [libraries]
